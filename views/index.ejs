@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang='ko'>
   <head>
     <meta charset = "UTF-8">
-    <form method="post">
+    <form name = "frm" id ="frm" method="post">
+      <input type="hidden" name="v1" id="v1" value="helloWorld">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welceeome to <%= title %></p>
-    ID : <input type ="text" name="id"><br>
-    PASSWORD : <input type ="password" name="password"><br>
+    아이디 : <input type ="text" name="id"><br>
+    패스워드 : <input type ="password" name="password"><br>
     <input type="button" id="accept1" class="accept2" value="확인"><br>
   <% for ( var i = 0; i < 5; ++i ) { %>
     <li>#<%=i%></li>
@@ -20,7 +21,8 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $('#accept1').mousedown(function(){
-          location.href = "http://www.naver.com";
+          //location.href = "/mainPage";
+          //var v1 = $()
         });
 //        $('.accept2').mousedown(function(){
 //          alert( "click2" );
@@ -29,3 +31,25 @@
     </script>
   </body>
 </html>
+
+
+<!--<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>-->
+<!--<script>-->
+  <!--function ow()-->
+  <!--{-->
+    <!--var tw = window.open( "", "test", "width=400,height=400" );-->
+    <!--var v1 = $('#v1').val();-->
+    <!--$(tw.document.body).html("<input type=text value='"+v1+"'>");-->
+
+    <!--//새창으로 post방식으로 값 넘길때 사용-->
+    <!--$('#frm').target = "test";-->
+    <!--$('#frm').submit();-->
+
+  <!--}-->
+<!--</script>-->
+
+<!--<form name="frm" id="frm" method="post">-->
+  <!--<input type="hidden" name="v1" id="v1" value="b1ix_output">-->
+<!--</form>-->
+
+<!--<input type="button" value="open_window" onclick="ow()">-->
