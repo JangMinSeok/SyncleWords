@@ -2,17 +2,17 @@
 <html lang='ko'>
   <head>
     <meta charset = "UTF-8">
-    <form name = "frm" id ="frm" method="post">
-      <input type="hidden" name="v1" id="v1" value="helloWorld">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+  <form name = "frm" action="/mainPage" id ="frm" method="post">
+    <input type="hidden" name="v1" id="v1" value="helloWorld">
     <h1><%= title %></h1>
     <p>Welceeome to <%= title %></p>
     아이디 : <input type ="text" name="id"><br>
     패스워드 : <input type ="password" name="password"><br>
-    <input type="button" id="accept1" class="accept2" value="확인"><br>
+    <input type="submit" id="accept1" class="accept2" value="확인"><br>
   <% for ( var i = 0; i < 5; ++i ) { %>
     <li>#<%=i%></li>
     <%} %>
@@ -20,10 +20,6 @@
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        $('#accept1').mousedown(function(){
-          //location.href = "/mainPage";
-          //var v1 = $()
-        });
 //        $('.accept2').mousedown(function(){
 //          alert( "click2" );
 //        });

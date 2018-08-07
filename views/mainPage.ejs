@@ -3,14 +3,14 @@
 <head>
     <meta charset = "UTF-8">
     <form method="post">
-        <title><%= title %></title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-<h1><%= title %></h1>
-<p>Welceeome to <%= title %></p>
+<% if( logined ) {
+%>
 Jpn : <input type ="text" name="jpn"><br>
 Kor : <input type ="text" name="kor"><br>
+<%}%>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){

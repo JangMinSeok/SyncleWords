@@ -9,8 +9,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/mainPage', function(req,res){
-  //console.log(req);
-  res.render('mainPage');
+  console.log(req.body.id)
+  // 로그인 처리
+
+  res.render('mainPage', {logined: true } );
 });
 
 module.exports = router;
