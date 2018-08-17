@@ -1,4 +1,5 @@
 var express = require('express');
+var db = require('./dbman');
 var router = express.Router();
 // node bin/www
 const path = require('path')
@@ -11,8 +12,9 @@ router.get('/', function(req, res, next) {
 router.post('/mainPage', function(req,res){
   console.log(req.body.id)
   // 로그인 처리
-
-  res.render('mainPage', {logined: true } );
+  db.login(req.body.id, req.body.pw, function(ret) {
+    res.render('mainPage', {logined: true } );
+  })
 });
 
 module.exports = router;
