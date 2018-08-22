@@ -10,15 +10,16 @@ var DBMan = function() {
         password : 'realslow41#&',
         port     : 3306,
         database : 'synclewords'
-    });
-
-    connection.connect();
+});
+this. connection.connect();
 }
 
 DBMan.prototype.login = function(id,pw, cb) {
     this.connection.query('SELECT * from WordsList', function(err, rows, fields) {
-        if (!err)
+        if (!err) {
             cb(0)
+            console.log(rows);
+        }
         else
             cb(-1)
     });
