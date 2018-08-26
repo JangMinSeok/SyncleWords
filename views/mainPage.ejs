@@ -8,6 +8,13 @@
 <body>
 <% if( logined ) {
 %>
+<% results.foreach((item) => {%>
+    <br><% item.SN %><br>
+    <br><% item.JPN %><br>
+    <br><% item.KOR %><br>
+    <br><% item.RegisterDate %><br>
+<%})%>
+
 
 Jpn : <input type ="text" name="jpn"><br>
 Kor : <input type ="text" name="kor"><br>
