@@ -17,12 +17,18 @@ this. connection.connect();
 DBMan.prototype.login = function(id,pw, cb) {
     this.connection.query('SELECT * from WordsList', function(err, rows, fields) {
         if (!err) {
-            //console.log(rows)
             cb(rows)
         }
         else
             cb(-1)
     });
+}
+
+DBMan.prototype.registerWords = function( kor, jpn, group_sn, cb ) {
+    var sQuery = 'call RegisterWord('
+    sQuery = sQuery + jpn + ',' + kor + ',' + group_sn + ')'
+    cosole.log(sQuery)
+    this.connection.query( sQuery )
 }
 
 var man = new DBMan();
