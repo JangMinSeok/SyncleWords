@@ -17,7 +17,7 @@ this. connection.connect();
 DBMan.prototype.login = function(id,pw, cb) {
     this.connection.query('SELECT * from WordsList', function(err, rows, fields) {
         if (!err) {
-            console.log(rows)
+            //console.log(rows)
             cb(rows)
         }
         else

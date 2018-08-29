@@ -8,16 +8,12 @@
 <body>
 <% if( logined ) {
 %>
-<% results.foreach((item) => {%>
-    <br><% item.SN %><br>
-    <br><% item.JPN %><br>
-    <br><% item.KOR %><br>
-    <br><% item.RegisterDate %><br>
-<%})%>
-
-
-Jpn : <input type ="text" name="jpn"><br>
-Kor : <input type ="text" name="kor"><br>
+<% results.forEach((item) => { %>
+    <br><%= item.JPN %><br>
+    <br><%= item.KOR %><br>
+<% }); %>
+    Jpn : <input type ="text" name="jpn"><br>
+    Kor : <input type ="text" name="kor"><br>
 <%}%>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
