@@ -2,20 +2,22 @@
 <html lang='ko'>
 <head>
     <meta charset = "UTF-8">
-    <form method="post">
         <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-<% if( logined ) {
-%>
-<% results.forEach((item) => { %>
-    <br><%= item.JPN %><br>
-    <br><%= item.KOR %><br>
-<% }); %>
-    Jpn : <input type ="text" name="JPN"><br>
-    Kor : <input type ="text" name="KOR"><br>
-    <input type="submit" id="ID_Register" class="CL_Register" value="등록"><br>
-<%}%>
+<div id="left">
+    <div id="register-word">단어 등록</div>
+</div>
+<div id="right">
+    <form name = "frm2" action="/registerWord" id ="frm2" method="post">
+    <% if( logined ) {
+    %>
+        Jpn : <input type ="text" id="tb_jpn" name="reg_jpn"><br>
+        Kor : <input type ="text" id="tb_kor" name="reg_kor"><br>
+        <input type="submit" id="ID_Register" class="CL_Register" value="등록"><br>
+    <%}%>
+    </form>
+</div>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){

@@ -6,6 +6,14 @@ var express = require('express');
 var db = require('./dbman');
 var router = express.Router();
 
+//router.post('/registerWord', function(req,res){
+//    console.log('mainPage recall')
+//    // 로그인 처리
+//    //db.login(req.body.id, req.body.pw, function(ret) {
+//    //res.render('registerWord' );
+//    //})
+//});
+
 //var mysql      = require('mysql');
 //var connection = mysql.createConnection({
 //    host     : 'localhost',

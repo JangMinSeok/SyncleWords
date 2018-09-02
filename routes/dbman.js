@@ -25,9 +25,9 @@ DBMan.prototype.login = function(id,pw, cb) {
 }
 
 DBMan.prototype.registerWords = function( kor, jpn, group_sn, cb ) {
-    var sQuery = 'call RegisterWord('
-    sQuery = sQuery + jpn + ',' + kor + ',' + group_sn + ')'
-    cosole.log(sQuery)
+    var sQuery = 'CALL RegisterWord( '
+    sQuery = sQuery + '"' + jpn + '"' + ',' + '"' + kor + '"' + ',' + group_sn + ')'
+    console.log(sQuery)
     this.connection.query( sQuery )
 }
 
