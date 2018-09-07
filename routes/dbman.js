@@ -7,7 +7,7 @@ var DBMan = function() {
     this.connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
-        password : 'realslow41#&',
+        password : '3137',
         port     : 3306,
         database : 'synclewords'
 });
@@ -25,10 +25,11 @@ DBMan.prototype.login = function(id,pw, cb) {
 }
 
 DBMan.prototype.registerWords = function( kor, jpn, group_sn, cb ) {
-    var sQuery = 'CALL RegisterWord( '
-    sQuery = sQuery + '"' + jpn + '"' + ',' + '"' + kor + '"' + ',' + group_sn + ')'
+    var sQuery = 'INSERT INTO WordsList VALUES( '
+    sQuery = sQuery + "0, " + '"' + jpn + '"' + ',' + '"' + kor + '"' + ',' + group_sn + ')'
     console.log(sQuery)
     this.connection.query( sQuery )
+    cb(0)
 }
 
 var man = new DBMan();

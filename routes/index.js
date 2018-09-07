@@ -17,14 +17,5 @@ router.post('/mainPage', function(req,res){
   })
 });
 
-router.post('/registerWord', function(req,res){
-  console.log('mainPage recall')
-  console.log( req.body.req_kor )
-  console.log( req.body.req_jpn )
-  db.registerWords( req.body.reg_kor, req.body.req_jpn, 1, function(ret) {
-    console.log( 'db called' )
-  })
-});
-
 
 module.exports = router;
