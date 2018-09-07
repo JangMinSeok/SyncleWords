@@ -5,6 +5,16 @@ var router = express.Router();
 //const path = require('path')
 
 /* GET home page. */
+router.use('/', function(req, res, next) {
+  if( true ) {
+    res.json({result: 'auth failed'});
+    return;
+  }
+
+  next();
+
+})
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Login Page' });
 });
