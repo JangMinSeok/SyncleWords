@@ -7,7 +7,7 @@ var DBMan = function() {
     this.connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
-        password : '3137',
+        password : 'realslow41#&',
         port     : 3306,
         database : 'synclewords'
 });
@@ -24,12 +24,34 @@ DBMan.prototype.login = function(id,pw, cb) {
     });
 }
 
-DBMan.prototype.registerWords = function( kor, jpn, group_sn, cb ) {
-    var sQuery = 'INSERT INTO WordsList VALUES( '
-    sQuery = sQuery + "0, " + '"' + jpn + '"' + ',' + '"' + kor + '"' + ',' + group_sn + ')'
+DBMan.prototype.registerWord = function( kor, jpn, userID, group_sn, cb ) {
+    var sQuery = 'CALL RegisterWord( '
+    sQuery = sQuery + '"' + jpn + '"' + ',' + '"' + kor + '"' + ',' + userID + ',' + group_sn + ')'
     console.log(sQuery)
     this.connection.query( sQuery )
     cb(0)
+}
+
+DBMan.prototype.viewWords = function(cb) {
+    this.connection.query('SELECT * from WordsList', function(err, rows, fields) {
+        if (!err) {
+            cb(rows)
+        }
+        else
+            cb(-1)
+    });
+}
+
+DBMan.prototype.searchWords = function( searchWord, cb ) {
+    var sQuery = "SELECT * FROM WordsList WHERE JPN LIKE '%" + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
+    console.log( sQuery )
+    this.connection.query(sQuery, function(err, rows, fields) {
+        if (!err) {
+            cb(rows)
+        }
+        else
+            cb(-1)
+    });
 }
 
 var man = new DBMan();

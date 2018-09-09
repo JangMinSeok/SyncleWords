@@ -12,6 +12,7 @@
     <p>Welceeome to <%= title %></p>
     아이디 : <input type ="text" name="id"><br>
     패스워드 : <input type ="password" name="password"><br>
+    <input type="hidden" id="value4" name="SubmitType" value="1">
     <input type="submit" id="accept1" class="accept2" value="확인"><br>
   <% for ( var i = 0; i < 5; ++i ) { %>
     <li>#<%=i%></li>
@@ -20,7 +21,7 @@
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-//        $('.accept2').mousedown(function(){
+//        $('.accept2').click(function(){
 //          alert( "click2" );
 //        });
       });

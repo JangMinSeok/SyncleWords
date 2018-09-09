@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mainPage = require('./routes/mainPage');
 var registerWord = require('./routes/registerWord')
+var searchWord = require('./routes/searchWord')
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mainPage', mainPage);
 app.use('/registerWord', registerWord);
+app.use('/searchWord', searchWord);
 app.use('/node_modules', express.static(path.join(__dirname,'/node_modules')));
 
 // catch 404 and forward to error handler
