@@ -54,6 +54,18 @@ DBMan.prototype.searchWords = function( searchWord, cb ) {
     });
 }
 
+DBMan.prototype.getWordsGroup = function( userID, cb ) {
+    var sQuery = "SELECT * FROM WordsGroup WHERE UserID = " + userID;
+    console.log( sQuery )
+    this.connection.query(sQuery, function(err, rows, fields) {
+        if (!err) {
+            cb(rows)
+        }
+        else
+            cb(-1)
+    });
+}
+
 var man = new DBMan();
 
 module.exports = man;

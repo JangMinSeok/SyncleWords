@@ -24,20 +24,25 @@ router.post('/mainPage', function(req,res){
       // 로그인 처리
     //db.login(req.body.id, req.body.pw, function(ret) {
     var submitType = req.body.SubmitType;
+    var userID = req.body.UserID;
     console.log( submitType )
   if ( submitType == 1) {
-    res.render('mainPage', { MenuType: submitType, Views:0 } );
+    db.getWordsGroup( userID, function(ret) {
+      console.log('db called')
+      console.log(ret)
+      res.render('mainPage', {MenuType: submitType, Groups: ret});
+    })
   }
   if ( submitType == 2 ) {
     db.viewWords( function(ret) {
       console.log( 'db called' )
       console.log( ret )
-      res.render('mainPage', { MenuType: 2, Views:ret } );
+      res.render('mainPage', { MenuType: submitType, Views:ret } );
     })
   }
   if ( submitType == 3 ) {
       console.log( 'search Word' )
-      res.render('mainPage', { MenuType: 3 } );
+      res.render('mainPage', { MenuType: submitType } );
   }
   //})
 });

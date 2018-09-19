@@ -30,8 +30,17 @@
     <% console.log(MenuType);%>
 <% if ( MenuType == 1 ) { %>
     <form name = "frmRegister" action="/registerWord" id ="frmRegister" method="post">
+
         Jpn : <input type ="text" id="tb_jpn" name="reg_jpn"><br>
-        Kor : <input type ="text" id="tb_kor" name="reg_kor"><br>
+        <br>
+        Kor : <input type ="text" id="tb_kor" name="reg_kor">
+        <select name="Groups">
+            <optgroup label="단어 그룹">
+                <% Groups.forEach( (item) => {%>
+                <option value="aaa"><%=item.GroupName%></option>
+                <%})%>
+            </optgroup>
+        </select>
         <input type="submit" id="ID_Register" class="CL_Register" value="등록"><br>
     </form>
 <%}%>
