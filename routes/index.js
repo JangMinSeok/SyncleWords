@@ -24,25 +24,37 @@ router.post('/mainPage', function(req,res){
       // 로그인 처리
     //db.login(req.body.id, req.body.pw, function(ret) {
     var submitType = req.body.SubmitType;
-    var userID = req.body.UserID;
+    var userID = req.body.LoginUserID;
     console.log( submitType )
+  // 단어 등록
   if ( submitType == 1) {
     db.getWordsGroup( userID, function(ret) {
       console.log('db called')
       console.log(ret)
-      res.render('mainPage', {MenuType: submitType, Groups: ret});
+      res.render('mainPage', {MenuType: submitType, Groups: ret, UserID:userID});
     })
   }
+  // 단어 보기
   if ( submitType == 2 ) {
-    db.viewWords( function(ret) {
+    db.viewWords( userID, function(ret) {
       console.log( 'db called' )
       console.log( ret )
-      res.render('mainPage', { MenuType: submitType, Views:ret } );
+      res.render('mainPage', { MenuType: submitType, Views:ret, UserID:userID } );
     })
   }
+  // 단어 검색
   if ( submitType == 3 ) {
       console.log( 'search Word' )
-      res.render('mainPage', { MenuType: submitType } );
+      res.render('mainPage', { MenuType: submitType, UserID:userID } );
+  }
+  // 그룹 수정
+  if ( submitType == 5 ) {
+    console.log( 'Modify Group' )
+    db.viewGroups( userID, function(ret) {
+      console.log( 'db called' )
+      console.log( ret )
+      res.render('mainPage', { MenuType: submitType, Views:ret, UserID:userID } );
+    })
   }
   //})
 });
@@ -51,23 +63,33 @@ router.post('/registerWord', function(req,res){
   console.log('registerWord called')
   var kor = req.body.reg_kor;
   var jpn = req.body.reg_jpn;
+  var groupSN = req.body.reg_group;
+  var userID = req.body.reg_userID;
   console.log( kor )
   console.log( jpn )
-  db.registerWord( kor, jpn, 1, 1, function(ret) {
+  console.log( groupSN )
+  console.log( userID )
+  db.registerWord( kor, jpn, userID, groupSN, function(ret) {
     console.log( 'db called' )
     console.log( ret )
-    res.render('mainPage', { MenuType: 1 } );
+    db.getWordsGroup( userID, function(ret) {
+      console.log('db called')
+      console.log(ret)
+      res.render('mainPage', {MenuType: 1, Groups: ret, UserID:userID });
+    })
   })
 });
 
 router.post('/searchWord', function(req,res) {
   console.log('searchWord called');
   var search = req.body.searchWord;
+  var userID = req.body.search_userID;
   console.log( search );
-  db.searchWords( search, function(ret) {
+  console.log( userID );
+  db.searchWords( userID, search, function(ret) {
     console.log( 'db called' );
     console.log( ret );
-    res.render('mainPage', { MenuType: 4, SearchRes:ret } );
+    res.render('mainPage', { MenuType: 4, SearchRes:ret, UserID:userID } );
   })
 })
 

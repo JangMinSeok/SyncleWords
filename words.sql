@@ -28,7 +28,8 @@ ALTER TABLE WordsGroup ADD INDEX IX_WordsGroup_UserID (UserID);
 
 SHOW INDEX FROM WordsList;
 
-insert into WordsGroup values ( 1, "테스트" )
+insert into WordsGroup values ( 1, "테스트", 1 )
+insert into WordsGroup values ( 0, "테스트2", 1 )
 
 insert into WordsList values ( 1, "合え", "테스트", "2018-08-23 00:17", 1, 1 )
 insert into WordsList values ( 2, "合", "테스트2",  "2018-08-23 00:18", 1, 1 )

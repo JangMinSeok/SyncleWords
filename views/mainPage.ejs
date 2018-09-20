@@ -8,21 +8,25 @@
 <div id="left">
     <form name = "frm1" action="/mainPage" id = "frm1" method="post">
         <input type="hidden" id="value1" name="SubmitType" value="1">
+        <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
         <input type="submit" id="register-word" value="단어 등록">
     </form>
     <br><br>
     <form name = "frm2" action="/mainPage" id = "frm2" method="post">
         <input type="hidden" id="value2" name="SubmitType" value="2">
+        <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
         <input type="submit" id="view-word" value="단어 보기">
     </form>
     <br><br>
     <form name = "frm3" action="/mainPage" id = "frm3" method="post">
         <input type="hidden" id="value3" name="SubmitType" value="3">
+        <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
         <input type="submit" id="search-word" value="단어 검색">
     </form>
     <br><br>
     <form name = "frm4" action="/mainPage" id = "frm4" method="post">
         <input type="hidden" id="value4" name="SubmitType" value="5">
+        <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
         <input type="submit" id="modify-group" value="그룹 수정">
     </form>
 </div>
@@ -30,16 +34,14 @@
     <% console.log(MenuType);%>
 <% if ( MenuType == 1 ) { %>
     <form name = "frmRegister" action="/registerWord" id ="frmRegister" method="post">
-
+        <input type="hidden" id="value_reg_userID" name="reg_userID" value="<%=UserID%>">
         Jpn : <input type ="text" id="tb_jpn" name="reg_jpn"><br>
         <br>
         Kor : <input type ="text" id="tb_kor" name="reg_kor">
-        <select name="Groups">
-            <optgroup label="단어 그룹">
+        <select name="reg_group">
                 <% Groups.forEach( (item) => {%>
-                <option value="aaa"><%=item.GroupName%></option>
+                <option value="<%=item.GroupSN%>"><%=item.GroupName%></option>
                 <%})%>
-            </optgroup>
         </select>
         <input type="submit" id="ID_Register" class="CL_Register" value="등록"><br>
     </form>
@@ -53,6 +55,7 @@
 <%}%>
 <% if ( MenuType == 3 ) { %>
     <form name = "frmSearch" action="/searchWord" id ="frmSearch" method="post">
+        <input type="hidden" id="value_reg_userID" name="search_userID" value="<%=UserID%>">
         Search : <input type ="text" id="tb_search" name="searchWord"><br>
         <input type="submit" id="ID_Search" class="CL_Search" value="검색"><br>
     </form>
@@ -61,6 +64,11 @@
     <% SearchRes.forEach( (item) => {%>
     <br> JPN : <%= item.JPN %><br>
     <br> KOR : <%= item.KOR %><br>
+    <%})%>
+    <%}%>
+<% if ( MenuType == 5 ) { %>
+    <% Views.forEach( (item) => {%>
+    <br> GroupName : <%= item.GroupName %><br>
     <%})%>
     <%}%>
 </div>

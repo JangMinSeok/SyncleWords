@@ -32,8 +32,9 @@ DBMan.prototype.registerWord = function( kor, jpn, userID, group_sn, cb ) {
     cb(0)
 }
 
-DBMan.prototype.viewWords = function(cb) {
-    this.connection.query('SELECT * from WordsList', function(err, rows, fields) {
+DBMan.prototype.viewWords = function( userID, cb) {
+    var sQuery = "SELECT * FROM WordsList WHERE UserID =" + userID;
+        this.connection.query( sQuery, function(err, rows, fields) {
         if (!err) {
             cb(rows)
         }
@@ -42,8 +43,8 @@ DBMan.prototype.viewWords = function(cb) {
     });
 }
 
-DBMan.prototype.searchWords = function( searchWord, cb ) {
-    var sQuery = "SELECT * FROM WordsList WHERE JPN LIKE '%" + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
+DBMan.prototype.searchWords = function( userID, searchWord, cb ) {
+    var sQuery = "SELECT * FROM WordsList WHERE UserID =" + userID + " AND JPN LIKE '%" + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
     console.log( sQuery )
     this.connection.query(sQuery, function(err, rows, fields) {
         if (!err) {
@@ -58,6 +59,17 @@ DBMan.prototype.getWordsGroup = function( userID, cb ) {
     var sQuery = "SELECT * FROM WordsGroup WHERE UserID = " + userID;
     console.log( sQuery )
     this.connection.query(sQuery, function(err, rows, fields) {
+        if (!err) {
+            cb(rows)
+        }
+        else
+            cb(-1)
+    });
+}
+
+DBMan.prototype.viewGroups = function( userID, cb) {
+    var sQuery = "SELECT * FROM WordsGroup WHERE UserID =" + userID;
+    this.connection.query( sQuery, function(err, rows, fields) {
         if (!err) {
             cb(rows)
         }
