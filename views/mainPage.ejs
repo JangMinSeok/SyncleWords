@@ -15,7 +15,7 @@
     <form name = "frm2" action="/mainPage" id = "frm2" method="post">
         <input type="hidden" id="value2" name="SubmitType" value="2">
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <input type="submit" id="view-word" value="단어 보기">
+        <input type="submit" id="view-word" value="그룹별 보기">
     </form>
     <br><br>
     <form name = "frm3" action="/mainPage" id = "frm3" method="post">
@@ -27,7 +27,7 @@
     <form name = "frm4" action="/mainPage" id = "frm4" method="post">
         <input type="hidden" id="value4" name="SubmitType" value="5">
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <input type="submit" id="modify-group" value="그룹 수정">
+        <input type="submit" id="modify-group" value="그룹 관리">
     </form>
 </div>
 <div id="right">
@@ -67,10 +67,21 @@
     <%})%>
     <%}%>
 <% if ( MenuType == 5 ) { %>
+    <form name = "frm_insertGroup" action="/registerGroup" id = "frm_insertGroup" method="post">
+        <input type ="text" id="tb_reg_group" name="reg_group">
+        <input type ="hidden" id="reg_group" name="group_userID" value="<%=UserID%>">
+        <input type="submit" id="register-group" value="추가">
+    </form>
+    <form name = "frm_deleteGroup" action="/deleteGroup" id = "frm_deleteGroup" method="post">
+        <input type ="hidden" id="reg_group" name="group_userID" value="<%=UserID%>">
+    <br><br>
+    <select name="delete_group">
     <% Views.forEach( (item) => {%>
-    <br> GroupName : <%= item.GroupName %><br>
+        <option value="<%=item.GroupSN%>"><%=item.GroupName%></option>
     <%})%>
-    <%}%>
+     <input type="submit" id="delete-group" value="삭제">
+    </form>
+  <%}%>
 </div>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">

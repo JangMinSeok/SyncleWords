@@ -93,4 +93,38 @@ router.post('/searchWord', function(req,res) {
   })
 })
 
+router.post('/registerGroup', function(req,res) {
+  console.log('registerGroup called');
+  var regGroupName = req.body.reg_group;
+  var userID = req.body.group_userID;
+  console.log( regGroupName );
+  console.log( userID );
+  db.registerGroup( regGroupName, userID, function(ret) {
+    console.log( 'db called' );
+    console.log( ret );
+    db.viewGroups( userID, function(ret) {
+      console.log( 'db called' )
+      console.log( ret )
+      res.render('mainPage', { MenuType: 5, Views:ret, UserID:userID } );
+    })
+  })
+})
+
+router.post('/deleteGroup', function(req,res) {
+  console.log('deleteGroup called');
+  var delGroupSN = req.body.delete_group;
+  var userID = req.body.group_userID;
+  console.log( delGroupSN );
+  console.log( userID );
+  db.deleteGroup( delGroupSN, userID, function(ret) {
+    console.log( 'db called' );
+    console.log( ret );
+    db.viewGroups( userID, function(ret) {
+      console.log( 'db called' )
+      console.log( ret )
+      res.render('mainPage', { MenuType: 5, Views:ret, UserID:userID } );
+    })
+  })
+})
+
 module.exports = router;

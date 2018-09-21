@@ -36,14 +36,25 @@ insert into WordsList values ( 2, "合", "테스트2",  "2018-08-23 00:18", 1, 1
 insert into WordsList values ( 0, "合", "테스트2",  "2018-08-23 00:18", 1, 1 )
 
 select * from wordsgroup
-select * from wordslist
+select * from wordslist;
 
 DROP PROCEDURE RegisterWord
 
 CREATE PROCEDURE RegisterWord ( IN sJPN varchar(50), IN sKOR varchar(50), IN nUserID INT, IN nGroupSN INT )
 	insert into WordsList values ( 0, sJPN, sKOR, NOW(), nUserID, nGroupSN )
 
+DROP PROCEDURE RegisterGroup
+CREATE PROCEDURE RegisterGroup ( IN sGroupName varchar(24), IN nUserID INT )
+		insert into WordsGroup values ( 0, sGroupName, nUserID )
+
+CREATE PROCEDURE DeleteGroup ( IN nGroupSN INT, IN nUserID INT )
+		delete from WordsGroup where UserID = nUserID AND GroupSN = nGroupSN
+
+SET aa 1
+SELECT aa
 
 select * from wordslist where jpn like '%테%' OR KOR like '%테%'
     
 call RegisterWord ( "合", "테스트2",  1 ) 
+
+SELECT * FROM WordsList WHERE UserID =1 AND JPN LIKE '%테%' OR KOR LIKE '%테%'

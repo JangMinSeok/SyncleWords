@@ -11,7 +11,7 @@ a {
 
 #left {
   width: 100px;
-  height: 100vh;
+  height: 50vh;
   background-color: lightgrey;
   float: left;
 }

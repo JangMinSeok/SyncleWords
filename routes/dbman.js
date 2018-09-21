@@ -78,6 +78,22 @@ DBMan.prototype.viewGroups = function( userID, cb) {
     });
 }
 
+DBMan.prototype.registerGroup = function( GroupName, userID, cb ) {
+    var sQuery = 'CALL RegisterGroup( '
+    sQuery = sQuery + '"' + GroupName + '"' + ',' + userID + ')'
+    console.log(sQuery)
+    this.connection.query( sQuery )
+    cb(0)
+}
+
+DBMan.prototype.deleteGroup = function( GroupSN, userID, cb ) {
+    var sQuery = 'CALL DeleteGroup( '
+    sQuery = sQuery + GroupSN + ',' + userID + ')'
+    console.log(sQuery)
+    this.connection.query( sQuery )
+    cb(0)
+}
+
 var man = new DBMan();
 
 module.exports = man;
