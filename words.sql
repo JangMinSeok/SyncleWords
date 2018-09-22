@@ -41,7 +41,7 @@ select * from wordslist;
 DROP PROCEDURE RegisterWord
 
 CREATE PROCEDURE RegisterWord ( IN sJPN varchar(50), IN sKOR varchar(50), IN nUserID INT, IN nGroupSN INT )
-	insert into WordsList values ( 0, sJPN, sKOR, NOW(), nUserID, nGroupSN )
+	insert into WordsList values ( 0, sJPN, sKOR, NOW(), nGroupSN , nUserID )
 
 DROP PROCEDURE RegisterGroup
 CREATE PROCEDURE RegisterGroup ( IN sGroupName varchar(24), IN nUserID INT )
@@ -61,3 +61,8 @@ select * from wordslist where jpn like '%테%' OR KOR like '%테%'
 call RegisterWord ( "合", "테스트2",  1 ) 
 
 SELECT * FROM WordsList WHERE UserID =1 AND JPN LIKE '%테%' OR KOR LIKE '%테%'
+
+CALL ViewGroupWords( 1,1) 
+
+
+SELECT * FROM WordsList AS A JOIN WordsGroup AS B ON A.GroupSN = B.GroupSN WHERE A.UserID =1 AND A.JPN LIKE '%테%' OR A.KOR LIKE '%테%'
