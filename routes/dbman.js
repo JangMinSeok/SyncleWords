@@ -44,7 +44,8 @@ DBMan.prototype.viewWords = function( userID, cb) {
 }
 
 DBMan.prototype.searchWords = function( userID, searchWord, cb ) {
-    var sQuery = "SELECT * FROM WordsList WHERE UserID =" + userID + " AND JPN LIKE '%" + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
+    //var sQuery = "SELECT * FROM WordsList WHERE UserID =" + userID + " AND JPN LIKE '%" + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
+    var sQuery = "SELECT * FROM WordsList AS A JOIN WordsGroup AS B ON A.GroupSN = B.GroupSN WHERE A.UserID =" + userID + " AND JPN LIKE '%"  + searchWord + "%" + "' OR KOR LIKE '" + "%" + searchWord + "%'"
     console.log( sQuery )
     this.connection.query(sQuery, function(err, rows, fields) {
         if (!err) {
@@ -92,6 +93,19 @@ DBMan.prototype.deleteGroup = function( GroupSN, userID, cb ) {
     console.log(sQuery)
     this.connection.query( sQuery )
     cb(0)
+}
+
+DBMan.prototype.viewGroupWords = function( GroupSN, userID, cb ) {
+    var sQuery = "SELECT * FROM WordsList WHERE UserID =" + userID + " AND GroupSN = " + GroupSN
+
+    console.log(sQuery)
+    this.connection.query( sQuery, function(err, rows, fields) {
+        if (!err) {
+            cb(rows)
+        }
+        else
+            cb(-1)
+    })
 }
 
 var man = new DBMan();

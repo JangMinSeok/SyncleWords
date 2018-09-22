@@ -49,6 +49,9 @@ CREATE PROCEDURE RegisterGroup ( IN sGroupName varchar(24), IN nUserID INT )
 
 CREATE PROCEDURE DeleteGroup ( IN nGroupSN INT, IN nUserID INT )
 		delete from WordsGroup where UserID = nUserID AND GroupSN = nGroupSN
+        
+CREATE PROCEDURE ViewGroupWords ( IN nGroupSN INT, IN nUserID INT )
+		SELECT * FROM WordsList where UserID = nUserID AND GroupSN = nGroupSN
 
 SET aa 1
 SELECT aa

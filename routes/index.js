@@ -34,13 +34,18 @@ router.post('/mainPage', function(req,res){
       res.render('mainPage', {MenuType: submitType, Groups: ret, UserID:userID});
     })
   }
-  // 단어 보기
+  // 그룹별 보기
   if ( submitType == 2 ) {
-    db.viewWords( userID, function(ret) {
+    db.viewGroups( userID, function(ret) {
       console.log( 'db called' )
       console.log( ret )
       res.render('mainPage', { MenuType: submitType, Views:ret, UserID:userID } );
     })
+    //db.viewWords( userID, function(ret) {
+    //  console.log( 'db called' )
+    //  console.log( ret )
+    //  res.render('mainPage', { MenuType: submitType, Views:ret, UserID:userID } );
+    //})
   }
   // 단어 검색
   if ( submitType == 3 ) {
@@ -123,6 +128,20 @@ router.post('/deleteGroup', function(req,res) {
       console.log( 'db called' )
       console.log( ret )
       res.render('mainPage', { MenuType: 5, Views:ret, UserID:userID } );
+    })
+  })
+})
+
+router.post('/viewGroupWords', function(req,res) {
+  var groupSN = req.body.view_group;
+  var userID = req.body.view_userID;
+  console.log( groupSN );
+  console.log( userID );
+  db.viewGroups( userID, function(ret) {
+    db.viewGroupWords( groupSN, userID, function(ret2) {
+      console.log( 'viewGroupWords called' );
+      console.log( ret2 );
+      res.render('mainPage', { MenuType: 6, GroupRes:ret, WordsRes:ret2, UserID:userID } );
     })
   })
 })

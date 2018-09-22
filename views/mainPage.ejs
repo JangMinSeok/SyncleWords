@@ -32,6 +32,7 @@
 </div>
 <div id="right">
     <% console.log(MenuType);%>
+    <!--단어 등록 후 다시 등록-->
 <% if ( MenuType == 1 ) { %>
     <form name = "frmRegister" action="/registerWord" id ="frmRegister" method="post">
         <input type="hidden" id="value_reg_userID" name="reg_userID" value="<%=UserID%>">
@@ -46,13 +47,18 @@
         <input type="submit" id="ID_Register" class="CL_Register" value="등록"><br>
     </form>
 <%}%>
+    <!--그룹 단어 보기 선택 전 그룹 표시-->
 <% if ( MenuType == 2 ) { %>
-    <% Views.forEach( (item) => {%>
-    <br> JPN : <%= item.JPN %><br>
-    <br> KOR : <%= item.KOR %><br>
-    <br> SN : <%= item.SN %><br>
-    <%})%>
+    <form name = "frmViewGroupWords" action="/viewGroupWords" id ="frmViewGroupWords" method="post">
+        <input type="hidden" id="value_view_words_userID" name="view_userID" value="<%=UserID%>">
+    <select name="view_group">
+        <% Views.forEach( (item) => {%>
+        <option value="<%=item.GroupSN%>"><%=item.GroupName%></option>
+        <%})%>
+        <input type="submit" id="view-words" value="보기">
+    </form>
 <%}%>
+    <!--단어 찾기 전 초기 화면-->
 <% if ( MenuType == 3 ) { %>
     <form name = "frmSearch" action="/searchWord" id ="frmSearch" method="post">
         <input type="hidden" id="value_reg_userID" name="search_userID" value="<%=UserID%>">
@@ -60,12 +66,24 @@
         <input type="submit" id="ID_Search" class="CL_Search" value="검색"><br>
     </form>
     <%}%>
+    <!--단어 찾기 결과 화면-->
 <% if ( MenuType == 4 ) { %>
+    <form name = "frmSearch" action="/searchWord" id ="frmSearch" method="post">
+        <input type="hidden" id="value_reg_userID" name="search_userID" value="<%=UserID%>">
+        Search : <input type ="text" id="tb_search" name="searchWord"><br>
+        <input type="submit" id="ID_Search" class="CL_Search" value="검색"><br>
+    </form>
+    <table border="1">
     <% SearchRes.forEach( (item) => {%>
-    <br> JPN : <%= item.JPN %><br>
-    <br> KOR : <%= item.KOR %><br>
+    <tr><td>
+        JPN : <%= item.JPN %><br>
+        KOR : <%= item.KOR %><br>
+        Group : <%= item.GroupName %><br>
+    </td></tr>
     <%})%>
     <%}%>
+    </table>
+    <!--그룹 추가/삭제 화면-->
 <% if ( MenuType == 5 ) { %>
     <form name = "frm_insertGroup" action="/registerGroup" id = "frm_insertGroup" method="post">
         <input type ="text" id="tb_reg_group" name="reg_group">
@@ -81,6 +99,24 @@
     <%})%>
      <input type="submit" id="delete-group" value="삭제">
     </form>
+  <%}%>
+    <!--그룹별 보기에서 그룹 선택 후 화면-->
+<% if ( MenuType == 6 ) { %>
+    <form name = "frmViewGroupWords" action="/viewGroupWords" id ="frmViewGroupWords" method="post">
+        <input type="hidden" id="value_view_words_userID" name="view_userID" value="<%=UserID%>">
+        <select name="view_group">
+            <% GroupRes.forEach( (item) => {%>
+            <option value="<%=item.GroupSN%>"><%=item.GroupName%></option>
+            <%})%>
+            <input type="submit" id="view-words" value="보기">
+            <table border="1">
+    </form>
+    <% WordsRes.forEach( (item2) => {%>
+    <tr><td>
+            JPN : <%= item2.JPN %><br>
+            KOR : <%= item2.KOR %><br>
+        </td></tr>
+    <%})%>
   <%}%>
 </div>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>

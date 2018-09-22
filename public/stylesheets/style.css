@@ -11,13 +11,16 @@ a {
 
 #left {
   width: 100px;
-  height: 50vh;
+  height: 100vh;
   background-color: lightgrey;
   float: left;
 }
 
 #right {
+  width: 500px;
+  height: 100vh;
   float: left;
+  background-image: url("/images/miffy2.png");
 }
 
 #register-word {
