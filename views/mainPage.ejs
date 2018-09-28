@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang='ko'>
 <head>
-    <meta charset = "UTF-8">
-        <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" charset="utf-8" />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
 <div id="left">
-    <form name = "frm1" action="/mainPage" id = "frm1" method="post">
+    <div id="forms">
+    <form class="left-form" name = "frm1" action="/mainPage" id = "frm1" method="post">
         <input type="hidden" id="value1" name="SubmitType" value="1" >
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <center><input type="submit"  style="height:40px; width:90px" id="register-word" value="단어 등록"></center>
+        <input class="btn" type="submit" id="register-word" value="단어 등록">
     </form>
     <br>
-    <form name = "frm2" action="/mainPage" id = "frm2" method="post">
+    <form class="left-form" name = "frm2" action="/mainPage" id = "frm2" method="post">
         <input type="hidden" id="value2" name="SubmitType" value="2">
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <center><input type="submit" style="height:40px; width:90px" id="view-word" value="그룹별 보기"></center>
+        <input class="btn" type="submit" id="view-word" value="그룹별 보기">
     </form>
     <br>
-    <form name = "frm3" action="/mainPage" id = "frm3" method="post">
+    <form class="left-form" name = "frm3" action="/mainPage" id = "frm3" method="post">
         <input type="hidden" id="value3" name="SubmitType" value="3">
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <center><input type="submit" style="height:40px; width:90px" id="search-word" value="단어 검색"></center>
+        <input class="btn" type="submit"  id="search-word" value="단어 검색">
     </form>
     <br>
-    <form name = "frm4" action="/mainPage" id = "frm4" method="post">
+    <form class="left-form" name = "frm4" action="/mainPage" id = "frm4" method="post">
         <input type="hidden" id="value4" name="SubmitType" value="5">
         <input type="hidden" id="val_ser_UserID" name="LoginUserID" value="<%=UserID%>">
-        <center><input type="submit" style="height:40px; width:90px" id="modify-group" value="그룹 관리"></center>
+        <input class="btn" type="submit" id="modify-group" value="그룹 관리">
     </form>
+    </div>
 </div>
 <div id="right">
     <% console.log(MenuType);%>

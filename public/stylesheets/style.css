@@ -10,14 +10,27 @@ a {
 }
 
 #left {
-  width: 100px;
+  width: 50%;
   height: 100vh;
   background-color: lightgrey;
   float: left;
 }
 
+#forms {
+  margin-top: 8px;
+}
+
+#left .left-form {
+  text-align: center;
+}
+
+#left .btn {
+  width: 80%;
+  margin: 0 auto;
+}
+
 #right {
-  width: 500px;
+  width: 50%;
   height: 100vh;
   float: left;
   background-image: url("/images/miffy2.png");
