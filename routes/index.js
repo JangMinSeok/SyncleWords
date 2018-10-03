@@ -4,13 +4,41 @@ var router = express.Router();
 // node bin/www
 //const path = require('path')
 
+
+//////////////////////////////////////////////////////
+router.get('/getajax', function(req, res, next) {
+  console.log('getajax method call');
+  res.render("/");
+});
+
+/* POST 호출 처리 */
+router.post('/LoginAccept', function(req, res, next) {
+  console.log('POST ajaxTest method call');
+  //view에 있는 data 에서 던진 값을 받아서
+  var userID = req.body.id;
+  var userPW = req.body.password;
+  var submitType = 1;
+  console.log( userID );
+  console.log( userPW );
+  console.log( submitType );
+  //json 형식으로 보내 준다.
+  res.send({result:true });
+  //db.getWordsGroup( userID, function(ret) {
+  //  console.log('db called')
+  //  console.log(ret)
+  //  res.render('mainPage', { MenuType: submitType, Groups: ret, UserID:userID });
+  //})
+});
+
+
+////////////////////////////////////////////////////
+
 /* GET home page. */
 router.use('/', function(req, res, next) {
   if( false ) {
     res.json({result: 'auth failed'});
     return;
   }
-
   next();
 
 })

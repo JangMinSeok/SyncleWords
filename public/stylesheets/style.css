@@ -10,10 +10,11 @@ a {
 }
 
 #left {
-  width: 50%;
+  width: 10%;
   height: 100vh;
   background-color: lightgrey;
   float: left;
+  background-image: url("/images/miffy2.png");
 }
 
 #forms {
@@ -33,7 +34,6 @@ a {
   width: 50%;
   height: 100vh;
   float: left;
-  background-image: url("/images/miffy2.png");
 }
 
 #register-word {
