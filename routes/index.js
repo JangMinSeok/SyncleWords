@@ -22,7 +22,7 @@ router.post('/LoginAccept', function(req, res, next) {
   console.log( userPW );
   console.log( submitType );
   //json 형식으로 보내 준다.
-  res.send({result:true });
+  //res.send({result:true });
   //db.getWordsGroup( userID, function(ret) {
   //  console.log('db called')
   //  console.log(ret)
