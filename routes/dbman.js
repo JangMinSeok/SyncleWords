@@ -7,7 +7,7 @@ var DBMan = function() {
     this.connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
-        password : '3137',
+        password : 'realslow41#&',
         port     : 3306,
         database : 'synclewords'
 });
